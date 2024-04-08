@@ -40,6 +40,10 @@ jobs:
           brew update
           brew install sqlite
 
+      - name: Set cibuildwheel verbosity
+        run: |
+          export CIBW_BUILD_VERBOSITY=1
+
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.17.0
         with:
