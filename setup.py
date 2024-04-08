@@ -91,7 +91,9 @@ def main():
     try:
         setuptools.setup(**get_setup_args())
     except BaseException as ex:
+        print(f"Error: {ex}", file=sys.stderr)
         log.info(str(ex))
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
