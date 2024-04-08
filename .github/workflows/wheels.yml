@@ -29,8 +29,7 @@ jobs:
           sudo apt-get install -y sqlite3 libsqlite3-dev
           wget https://litesync.io/download/litesync-free-linux-x86_64.tar.gz
           tar -xzvf litesync-free-linux-x86_64.tar.gz
-          ./install.sh
-          cd ..
+          ./install
 
       - name: Install build dependencies
         if: matrix.os == 'windows-latest'
@@ -38,8 +37,7 @@ jobs:
           choco install sqlite -y
           wget https://litesync.io/download/litesync-free-windows-x86_64.tar.gz
           tar -xzvf litesync-free-windows-x86_64.tar.gz
-          ./install.sh
-          cd ..
+          ./install
 
       - name: Install build dependencies
         if: matrix.os == 'macos-latest'
@@ -49,8 +47,7 @@ jobs:
           brew install sqlite
           wget https://litesync.io/download/litesync-free-mac-x86_64.tar.gz
           tar -xzvf litesync-free-mac-x86_64.tar.gz
-          ./install.sh
-          cd ..
+          ./install
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.17.0
