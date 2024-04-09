@@ -27,8 +27,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y sqlite3 libsqlite3-dev
-          pip install setuptools
-          pip install shutil
+          pip install disutils
           wget https://litesync.io/download/litesync-free-linux-x86_64.tar.gz
           tar -xzvf litesync-free-linux-x86_64.tar.gz
           sudo ./install
