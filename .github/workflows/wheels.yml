@@ -53,8 +53,6 @@ jobs:
         uses: pypa/cibuildwheel@v2.17.0
         with:
           output-dir: wheelhouse
-          env:
-            CIBW_BUILD_VERBOSE: 1
 
       - name: Upload wheels
         uses: actions/upload-artifact@v2
