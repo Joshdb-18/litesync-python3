@@ -37,7 +37,7 @@ jobs:
           choco install sqlite -y
           Invoke-WebRequest -Uri https://litesync.io/download/litesync-free-windows-x86_64.tar.gz -OutFile litesync-free-windows-x86_64.zip
           Expand-Archive -Path litesync-free-windows-x86_64.zip -DestinationPath .
-          .\install.bat
+          install.bat
 
       - name: Install build dependencies
         if: matrix.os == 'macos-latest'
