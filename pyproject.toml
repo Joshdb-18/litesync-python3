@@ -12,8 +12,8 @@ build = "cp310-manylinux_x86_64, cp39-manylinux_x86_64, cp38-manylinux_x86_64, c
 
 [tool.cibuildwheel.windows]
 before-build = """
-Invoke-WebRequest -Uri https://litesync.io/download/litesync-free-windows-x86_64.tar.gz -OutFile litesync-free-windows-x86_64.zip
-Expand-Archive -Path litesync-free-windows-x86_64.zip -DestinationPath .
+curl -O https://litesync.io/download/litesync-free-windows-x86_64.tar.gz
+tar -xzvf litesync-free-windows-x86_64.tar.gz
 install.bat
 """
 
