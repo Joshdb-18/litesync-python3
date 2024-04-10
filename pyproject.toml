@@ -12,6 +12,7 @@ build = "cp310-manylinux_x86_64, cp39-manylinux_x86_64, cp38-manylinux_x86_64, c
 
 [tool.cibuildwheel.windows]
 before-build = """
+curl -O https://www.sqlite.org/2024/sqlite-dll-win-x64-3450200.zip
 curl -O https://litesync.io/download/litesync-free-windows-x86_64.tar.gz
 tar -xzvf litesync-free-windows-x86_64.tar.gz
 .\\install.bat
