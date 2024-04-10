@@ -42,7 +42,6 @@ jobs:
       - name: Install build dependencies
         if: matrix.os == 'macos-latest'
         run: |
-          # Install sqlite3 via brew
           brew update
           wget https://litesync.io/download/litesync-free-mac-x86_64.tar.gz
           tar -xzvf litesync-free-mac-x86_64.tar.gz
@@ -57,9 +56,6 @@ jobs:
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.17.0
 
-          # - name: Build wheels
-          # run: python3 cibuildwheel --output-dir wheelhouse
-      
       - name: Upload wheels as artifact
         uses: actions/upload-artifact@v3
         with:

@@ -16,7 +16,7 @@ curl -O https://litesync.io/download/litesync-free-windows-x86_64.tar.gz
 tar -xzvf litesync-free-windows-x86_64.tar.gz
 install.bat
 """
-build = "cp37-win_x86_64, cp38-win_x86_64, cp39-win_x86_64, cp310-win_x86_64"
+build = "cp310-win64, cp39-win64, cp38-win64, cp37-win64"
 
 [tool.cibuildwheel.macos]
 before-build = """
