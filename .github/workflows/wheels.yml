@@ -11,23 +11,23 @@ jobs:
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: [3.6, 3.7, 3.8, 3.9, 3.10]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.8
+          python-version: ${{ matrix.python-version }}
 
       - name: Install build dependencies
         if: matrix.os == 'ubuntu-latest'
         run: |
           sudo apt-get update
-          sudo apt-get install -y sqlite3 libsqlite3-dev
-          pip install disutils
           wget https://litesync.io/download/litesync-free-linux-x86_64.tar.gz
           tar -xzvf litesync-free-linux-x86_64.tar.gz
           sudo ./install
@@ -35,7 +35,6 @@ jobs:
       - name: Install build dependencies
         if: matrix.os == 'windows-latest'
         run: |
-          choco install sqlite -y
           Invoke-WebRequest -Uri https://litesync.io/download/litesync-free-windows-x86_64.tar.gz -OutFile litesync-free-windows-x86_64.zip
           Expand-Archive -Path litesync-free-windows-x86_64.zip -DestinationPath .
           install.bat
@@ -45,20 +44,21 @@ jobs:
         run: |
           # Install sqlite3 via brew
           brew update
-          brew install sqlite
           wget https://litesync.io/download/litesync-free-mac-x86_64.tar.gz
           tar -xzvf litesync-free-mac-x86_64.tar.gz
           ./install
 
-      - name: Build wheels
-        uses: pypa/cibuildwheel@v2.17.0
-        with:
-          output-dir: wheelhouse
-        env:
-          CIBW_VERBOSE: 1
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip --exclude 3.11
 
-      - name: Upload wheels
-        uses: actions/upload-artifact@v2
+      - name: Install cibuildwheel
+        run: python -m pip install cibuildwheel
+
+      - name: Build wheels
+        run: python cibuildwheel --output-dir wheelhouse
+      
+      - name: Upload wheels as artifact
+        uses: actions/upload-artifact@v3
         with:
           name: cibw-wheels-${{ matrix.os }}
-          path: ./wheelhouse/*.whl
+          path: wheelhouse

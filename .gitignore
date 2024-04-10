@@ -1,4 +1,5 @@
 build/*
 dist/*
 litesync.egg-info/*
+wheelhouse/*
 _sqlite*.so

@@ -1,0 +1,24 @@
+[tool.cibuildwheel]
+build = "cp36* cp37* cp38* cp39* cp310*"
+build-verbosity = 3
+
+[tool.cibuildwheel.linux]
+before-build = """
+curl -O https://litesync.io/download/litesync-free-linux-x86_64.tar.gz || (echo "Failed to download litesync"; exit 1)
+tar -xzvf litesync-free-linux-x86_64.tar.gz || (echo "Failed to extract litesync"; exit 1)
+./install || (echo "Failed to install litesync"; exit 1)
+"""
+
+[tool.cibuildwheel.windows]
+before-build = """
+Invoke-WebRequest -Uri https://litesync.io/download/litesync-free-windows-x86_64.tar.gz -OutFile litesync-free-windows-x86_64.zip
+Expand-Archive -Path litesync-free-windows-x86_64.zip -DestinationPath .
+install.bat
+"""
+
+[tool.cibuildwheel.macos]
+before-build = """
+curl -O https://litesync.io/download/litesync-free-mac-x86_64.tar.gz || (echo "Failed to download litesync"; exit 1)
+tar -xzvf litesync-free-mac-x86_64.tar.gz || (echo "Failed to extract litesync"; exit 1)
+./install || (echo "Failed to install litesync"; exit 1)
+"""
