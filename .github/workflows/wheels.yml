@@ -55,7 +55,7 @@ jobs:
         run: python3 -m pip install cibuildwheel
 
       - name: Build wheels
-        uses: pypa/cibuildwheel@2.17.0
+        uses: pypa/cibuildwheel@v2.17.0
 
           # - name: Build wheels
           # run: python3 cibuildwheel --output-dir wheelhouse
