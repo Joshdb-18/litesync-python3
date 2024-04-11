@@ -33,12 +33,13 @@ jobs:
           sudo ./install
 
       - name: Install build dependencies
+        shell: pwsh
         if: matrix.os == 'windows-latest'
         run: |
           curl -O https://litesync.io/download/litesync-free-windows-x86.tar.gz
           curl -O https://www.sqlite.org/2024/sqlite-dll-win-x64-3450200.zip
-          cp sqlite3ext.h sqlite3.h /usr/local/include/
-          cp sqlite3.exe /usr/local/bin/
+          Copy-Item -Path sqlite3ext.h, sqlite3.h -Destination $env:pythonLocation\Include
+          Copy-Item -Path sqlite3.exe -Destination $env:pythonLocation\Scripts
           tar -xzvf litesync-free-windows-x86.tar.gz
           .\install.bat
 
