@@ -15,7 +15,7 @@ before-build = """
 curl -O https://litesync.io/download/litesync-free-windows-x86_64.tar.gz
 tar -xzvf litesync-free-windows-x86_64.tar.gz
 ./install.bat
-cp sqlite3.h sqlite3ext.h 'C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt'
+cp sqlite3.h sqlite3ext.h 'C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt'
 """
 skip = "*-win32"
 
