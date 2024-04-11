@@ -36,7 +36,6 @@ jobs:
         if: matrix.os == 'windows-latest'
         run: |
           curl -O https://www.sqlite.org/2024/sqlite-dll-win-x64-3450200.zip
-          .\sqlite3.exe
           curl -O https://litesync.io/download/litesync-free-windows-x86_64.tar.gz
           tar -xzvf litesync-free-windows-x86_64.tar.gz
           .\install.bat
