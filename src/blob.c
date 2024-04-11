@@ -635,7 +635,7 @@ static PyMappingMethods blob_mapping_methods = {
 
 PyTypeObject pysqlite_BlobType = {
         PyVarObject_HEAD_INIT(NULL, 0)
-        MODULE_NAME ".Blob",
+        MODULE_NAME \".Blob",
         .tp_basicsize = sizeof(pysqlite_Blob),
         .tp_dealloc = (destructor)pysqlite_blob_dealloc,
         .tp_as_sequence = &blob_sequence_methods,
