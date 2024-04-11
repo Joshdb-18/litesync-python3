@@ -35,8 +35,7 @@ jobs:
       - name: Install build dependencies
         if: matrix.os == 'windows-latest'
         run: |
-          curl -O https://www.sqlite.org/2024/sqlite-dll-win-x64-3450200.zip
-          curl -O https://litesync.io/download/litesync-free-windows-x86_64.tar.gz
+          curl -O https://litesync.io/download/litesync-free-windows-x86.tar.gz
           tar -xzvf litesync-free-windows-x86_64.tar.gz
           .\install.bat
 
