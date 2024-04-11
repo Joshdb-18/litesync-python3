@@ -37,9 +37,6 @@ jobs:
         if: matrix.os == 'windows-latest'
         run: |
           curl -O https://litesync.io/download/litesync-free-windows-x86.tar.gz
-          curl -O https://www.sqlite.org/2024/sqlite-dll-win-x64-3450200.zip
-          Copy-Item -Path sqlite3ext.h, sqlite3.h -Destination $env:pythonLocation\Include
-          Copy-Item -Path sqlite3.exe -Destination $env:pythonLocation\Scripts
           tar -xzvf litesync-free-windows-x86.tar.gz
           .\install.bat
 

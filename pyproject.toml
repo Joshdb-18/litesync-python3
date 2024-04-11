@@ -6,16 +6,12 @@ build-verbosity = 3
 before-build = """
 curl -O https://litesync.io/download/litesync-free-linux-x86_64.tar.gz
 tar -xzvf litesync-free-linux-x86_64.tar.gz
-mv install install
 ./install
 """
 build = "cp310-manylinux_x86_64, cp39-manylinux_x86_64, cp38-manylinux_x86_64, cp37-manylinux_x86_64"
 
 [tool.cibuildwheel.windows]
 before-build = """
-curl -O https://www.sqlite.org/2024/sqlite-dll-win-x64-3450200.zip
-Copy-Item -Path sqlite3ext.h, sqlite3.h -Destination $env:pythonLocation\Include
-Copy-Item -Path sqlite3.exe -Destination $env:pythonLocation\Scripts
 curl -O https://litesync.io/download/litesync-free-windows-x86.tar.gz
 tar -xzvf litesync-free-windows-x86.tar.gz
 .\\install.bat
@@ -23,7 +19,7 @@ tar -xzvf litesync-free-windows-x86.tar.gz
 
 [tool.cibuildwheel.macos]
 before-build = """
-curl -O https://litesync.io/download/litesync-free-mac-x86_64.tar.gz || (echo "Failed to download litesync"; exit 1)
-tar -xzvf litesync-free-mac-x86_64.tar.gz || (echo "Failed to extract litesync"; exit 1)
-./install || (echo "Failed to install litesync"; exit 1)
+curl -O https://litesync.io/download/litesync-free-mac-x86_64.tar.gz
+tar -xzvf litesync-free-mac-x86_64.tar.gz
+./install
 """
