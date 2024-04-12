@@ -68,7 +68,7 @@ def get_setup_args():
         ext_modules=[Extension(
             name=PACKAGE_NAME + EXTENSION_MODULE_NAME,
             sources=sources,
-            define_macros=define_macros))
+            define_macros=define_macros)
         ],
         classifiers=[
             "Development Status :: 4 - Beta",
