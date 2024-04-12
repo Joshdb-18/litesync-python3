@@ -30,12 +30,6 @@ if sys.platform == "darwin":
     os.environ['CFLAGS'] = "-Qunused-arguments"
     log.info("CFLAGS: " + os.environ['CFLAGS'])
 
-# Define compilation flags for Windows
-if sys.platform.startswith('win'):
-    extra_compile_args = ['/DWIN32', '/D_WINDOWS', '/W3']
-else:
-    extra_compile_args = []
-
 def quote_argument(arg):
     q = '\\"' if sys.platform == 'win32' and sys.version_info < (3, 9) else '"'
     return q + arg + q
@@ -73,8 +67,7 @@ def get_setup_args():
         ext_modules=[Extension(
             name=PACKAGE_NAME + EXTENSION_MODULE_NAME,
             sources=sources,
-            define_macros=define_macros,
-            extra_compile_args=extra_compile_args)
+            define_macros=define_macros)
         ],
         classifiers=[
             "Development Status :: 4 - Beta",
