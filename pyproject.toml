@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [tool.cibuildwheel]
 build = "cp37* cp38* cp39* cp310*"
 build-verbosity = 3
@@ -12,12 +16,20 @@ build = "cp310-manylinux_x86_64, cp39-manylinux_x86_64, cp38-manylinux_x86_64, c
 
 [tool.cibuildwheel.windows]
 before-build = """
+from setuptools import setup
+
 curl -O https://litesync.io/download/litesync-free-windows-x86_64.tar.gz
 tar -xzvf litesync-free-windows-x86_64.tar.gz
 ./install.bat
-ls 'C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt'
-cp sqlite3.h sqlite3ext.h 'C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt'
-ls 'C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt'
+
+setup(
+    name='litesync',
+    version='1.0',
+    packages=['litesync'],
+    package_data={'': ['*.h']},
+    include_package_data=True,
+    data_files=[('C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt', ['sqlite3.h', 'sqlite3ext.h'])],
+)
 """
 skip = "*-win32"
 
