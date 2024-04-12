@@ -24,6 +24,7 @@
 #ifndef PYSQLITE_ROW_H
 #define PYSQLITE_ROW_H
 #define PY_SSIZE_T_CLEAN
+#define MODULE_NAME "litesync"
 #include "Python.h"
 
 typedef struct _Row

@@ -1,5 +1,6 @@
 #ifndef PYSQLITE_BLOB_H
 #define PYSQLITE_BLOB_H
+#define MODULE_NAME "litesync"
 #include "Python.h"
 #include "sqlite3.h"
 #include "connection.h"
