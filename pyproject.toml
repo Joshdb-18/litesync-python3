@@ -16,20 +16,26 @@ build = "cp310-manylinux_x86_64, cp39-manylinux_x86_64, cp38-manylinux_x86_64, c
 
 [tool.cibuildwheel.windows]
 before-build = """
-from setuptools import setup
+import os
+import subprocess
 
-curl -O https://litesync.io/download/litesync-free-windows-x86_64.tar.gz
-tar -xzvf litesync-free-windows-x86_64.tar.gz
-./install.bat
+subprocess.run(["curl", "-O", "https://litesync.io/download/litesync-free-windows-x86_64.tar.gz"])
+subprocess.run(["tar", "-xzvf", "litesync-free-windows-x86_64.tar.gz"])
+subprocess.run(["install.bat"])
 
-setup(
-    name='litesync',
-    version='1.0',
-    packages=['litesync'],
-    package_data={'': ['*.h']},
-    include_package_data=True,
-    data_files=[('C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt', ['sqlite3.h', 'sqlite3ext.h'])],
-)
+def run_setup():
+    from setuptools import setup
+
+    setup(
+        name='litesync',
+        version='1.0',
+        packages=['litesync'],
+        package_data={'': ['*.h']},
+        include_package_data=True,
+        data_files=[('C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt', ['sqlite3.h', 'sqlite3ext.h'])],
+    )
+
+run_setup()
 """
 skip = "*-win32"
 
