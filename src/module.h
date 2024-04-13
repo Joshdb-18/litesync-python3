@@ -24,7 +24,6 @@
 #ifndef PYSQLITE_MODULE_H
 #define PYSQLITE_MODULE_H
 #define PY_SSIZE_T_CLEAN
-#define MODULE_NAME "litesync"
 #include "Python.h"
 
 #define PYSQLITE_VERSION "2.6.0"
