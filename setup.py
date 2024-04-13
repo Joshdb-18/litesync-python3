@@ -31,7 +31,7 @@ if sys.platform == "darwin":
     log.info("CFLAGS: " + os.environ['CFLAGS'])
 
 def quote_argument(arg):
-    q = '\\"' if sys.platform == 'win32' and sys.version_info < (3, 8) else '"'
+    q = '"' if sys.platform == 'win32' and sys.version_info < (3, 8) else '"'
     return q + arg + q
 
 define_macros = [('MODULE_NAME', quote_argument(PACKAGE_NAME + '.dbapi2'))]
