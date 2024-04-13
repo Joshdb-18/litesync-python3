@@ -2,6 +2,10 @@
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[build-system.windows]
+include-dirs = ["C:\\Windows\\System32"]
+library-dirs = ["C:\\Windows\\System32"]
+
 [tool.cibuildwheel]
 build = "cp37* cp38* cp39* cp310*"
 build-verbosity = 3
