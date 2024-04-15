@@ -16,7 +16,7 @@ build = "cp310-manylinux_x86_64, cp39-manylinux_x86_64, cp38-manylinux_x86_64, c
 
 [tool.cibuildwheel.windows]
 before-build = "python setup_litesync.py install"
-build = "*-win_amd64, *-win_amr64"
+build = "*-win_amd64, *-win_arm64"
 
 [tool.cibuildwheel.macos]
 before-build = """
