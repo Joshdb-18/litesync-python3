@@ -12,10 +12,10 @@ curl -O https://litesync.io/download/litesync-free-linux-x86_64.tar.gz
 tar -xzvf litesync-free-linux-x86_64.tar.gz
 ./install
 """
-
+build = "cp37-manylinux_x86_64 cp38-manylinux_x86_64 cp39-manylinux_x86_64 cp310-manylinux_x86_64"
 [tool.cibuildwheel.windows]
 before-build = "python setup_litesync.py install"
-skip = "*-win_32"
+skip = "*-win32"
 
 [tool.cibuildwheel.macos]
 before-build = """
